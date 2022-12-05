@@ -1,34 +1,102 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/nail_store.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="882"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,9:maincustomers"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM products ORDER BY price;
-
-SELECT * FROM products WHERE review=&quot;awesome&quot; ORDER BY price;
-
-SELECT AVG(price) AS 'Average price' from products;
-
-SELECT * FROM customers;
-
-SELECT COUNT(name) AS 'Number of customers', order_date
-FROM customers
-GROUP BY order_date
-ORDER BY COUNT(name) DESC; 
-
-SELECT customers.order_date AS Date, SUM(products.price) AS 'Daily revenue'
-FROM customers
-JOIN products 
-ON customers.product_id=products.id
-GROUP BY 1
-ORDER BY 2 DESC;
-
-SELECT customers.name, products.product
-FROM customers
-JOIN products
-ON customers.product_id=products.id
-WHERE customers.order_date = '12/08/2022';
-
-SELECT customers.name AS 'Most loyal client', COUNT(customers.name) AS 'Total orders', SUM(products.price) AS 'Sum of orders' 
-FROM customers
-JOIN products
-ON customers.product_id=products.id
-GROUP BY 1
-ORDER BY 2 DESC
-LIMIT 1;
+CREATE TABLE products ( id INTEGER PRIMARY KEY, product TEXT, price INTEGER, review TEXT);
+INSERT INTO products VALUES (1, "Black nail polish", 9.99, "awesome");
+INSERT INTO products VALUES (2, "Pink nail polish", 7.99, "not bad");
+INSERT INTO products VALUES (3, "Red nail polish", 9.99, "awesome");
+INSERT INTO products VALUES (4, "Blue nail polish", 8.99, "good");
+INSERT INTO products VALUES (5, "Base coat", 12.99, "good");
+INSERT INTO products VALUES (6, "Top coat", 12.99, "good");
+INSERT INTO products VALUES (7, "Black nail polish", 9.99, "good");
+INSERT INTO products VALUES (8, "Primar", 9.99, "not bad");
+INSERT INTO products VALUES (9, "Cuticle oil", 11.99, "awesome");
+INSERT INTO products VALUES (10, "Black nail polish", 9.99, "good");
+INSERT INTO products VALUES (11, "Scissors", 19.99, "good");
+INSERT INTO products VALUES (12, "Nail File", 7.99, "not bad");
+INSERT INTO products VALUES (13, "Nail foil", 2.99, "bad");
+INSERT INTO products VALUES (14, "UV Lamp", 29.99, "awesome");
+INSERT INTO products VALUES (15, "Cuticle pusher", 7.99, "not bad");
+
+CREATE TABLE customers (customer_id INTEGER PRIMARY KEY, name text, product_id INTEGER, order_date TEXT);
+INSERT INTO customers (name, product_id, order_date) VALUES ('Samantha Jones', 7, '06/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Amber Rodrigez', 2, '10/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Audrey Plum', 14, '10/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Andrea Jackson', 9, '11/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Samantha Jones', 11, '11/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Nina Roberts', 14, '12/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Lara Aniston', 11, '12/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Ashley Gray', 7, '13/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Meghan Pitts', 3, '13/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Ann Nielsen', 5, '13/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Samantha Jones', 9, '13/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Tori Walker', 2, '14/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Mikayla Brandt', 14, '14/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Estelle Salas', 1, '15/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Abbey Richardson', 11, '16/08/2022');
+INSERT INTO customers (name, product_id, order_date) VALUES ('Jesse Powell', 5, '16/08/2022');
+
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/nail_store.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="882"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,9:maincustomers"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM products ORDER BY price;
+
+
+
+SELECT * FROM products WHERE review='awesome' ORDER BY price;
+
+
+
+SELECT AVG(price) AS 'Average price' from products;
+
+
+
+SELECT * FROM customers;
+
+
+
+SELECT COUNT(name) AS 'Number of customers', order_date
+
+FROM customers
+
+GROUP BY order_date
+
+ORDER BY COUNT(name) DESC; 
+
+
+
+SELECT customers.order_date AS Date, SUM(products.price) AS 'Daily revenue'
+
+FROM customers
+
+JOIN products 
+
+ON customers.product_id=products.id
+
+GROUP BY 1
+
+ORDER BY 2 DESC;
+
+
+
+SELECT customers.name, products.product
+
+FROM customers
+
+JOIN products
+
+ON customers.product_id=products.id
+
+WHERE customers.order_date = '12/08/2022';
+
+
+
+SELECT customers.name AS 'Most loyal client', COUNT(customers.name) AS 'Total orders', SUM(products.price) AS 'Sum of orders' 
+
+FROM customers
+
+JOIN products
+
+ON customers.product_id=products.id
+
+GROUP BY 1
+
+ORDER BY 2 DESC
+
+LIMIT 1;
+
 </sql><current_tab id="0"/></tab_sql></sqlb_project>

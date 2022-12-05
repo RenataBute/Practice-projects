@@ -1,11 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/tiktok_app.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="875"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:maintiktok"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM tiktok;
-
-UPDATE tiktok SET date=&quot;12-11-2022&quot; WHERE date=&quot;12-10-2022&quot;;
-
-SELECT * FROM tiktok;
-
-DELETE FROM tiktok WHERE post_type=&quot;story&quot;;
-
-SELECT * FROM tiktok;
-
+CREATE TABLE tiktok ( id INTEGER PRIMARY KEY, username TEXT, post_type TEXT , date TEXT, description TEXT);
+
+INSERT INTO tiktok (username, post_type, date, description)
+VALUES
+
+("user1664688","video","15-11-2022","part 2 of what i eat in a day"),
+("elly.carter","video","13-11-2022","why is this so funny"),
+("redheadgirl", "story", "13-11-2022", "update"),
+("robertnest", "video", "12-10-2022", "watch untill the end"),
+("bob.vance", "story", "10-11-2022", "how is everyone?");
+
+
+UPDATE tiktok SET date=&quot;12-11-2022&quot; WHERE date=&quot;12-10-2022&quot;;
+
+
+
+SELECT * FROM tiktok;
+
+
+
+DELETE FROM tiktok WHERE post_type=&quot;story&quot;;
+
+
+
+SELECT * FROM tiktok;
+
+
+
 </sql><current_tab id="0"/></tab_sql></sqlb_project>

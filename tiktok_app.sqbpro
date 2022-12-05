@@ -10,7 +10,7 @@ VALUES
 ("bob.vance", "story", "10-11-2022", "how is everyone?");
 
 
-UPDATE tiktok SET date=&quot;12-11-2022&quot; WHERE date=&quot;12-10-2022&quot;;
+UPDATE tiktok SET date='12-11-2022' WHERE date'12-10-2022';
 
 
 
@@ -18,7 +18,7 @@ SELECT * FROM tiktok;
 
 
 
-DELETE FROM tiktok WHERE post_type=&quot;story&quot;;
+DELETE FROM tiktok WHERE post_type='story';
 
 
 

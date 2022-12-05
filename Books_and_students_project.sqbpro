@@ -1,69 +1,206 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/library.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1159"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainbooks"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM books
-LIMIT 5;
-SELECT * FROM students
-LIMIT 5;
-
-SELECT MIN(release_year) AS 'Oldest Book', title
-FROM books;
-
-SELECT MAX(release_year) AS 'Newest Book', title
-FROM books; 
-
-SELECT genre, COUNT(*) AS 'How Many Books'
-FROM books
-GROUP BY genre
-ORDER BY 2 DESC; 
-
-SELECT genre, title, MAX(review) AS 'Highest review in each genre'
-FROM books
-GROUP BY genre
-ORDER BY 3 DESC;
-
-SELECT * 
-FROM books
-WHERE review&gt;4
-ORDER BY review DESC;
-
-SELECT title, author
-FROM books
-WHERE book_id NOT IN (
-SELECT book_id
-FROM students);
-
-SELECT title 
-FROM books 
-WHERE title LIKE '%the%'
-GROUP BY 1;
-
-SELECT title, author, release_year AS 'Release year'
-FROM books
-WHERE release_year BETWEEN '1960' AND '1990'
-ORDER BY 3; 
-
-SELECT books.book_id, title, MIN(review) AS 'Worst rated book', name
-FROM books
-JOIN students
-ON students.book_id=books.book_id;
-
-
-SELECT name, penalty AS 'Banned for two months'
-FROM students
-WHERE penalty='yes'
-ORDER BY name;
-
-SELECT books.book_id, books.title, books.author, COUNT(students.book_id) AS 'Frequency'
-FROM books
-JOIN students
-ON books.book_id=students.book_id
-GROUP BY 2
-ORDER BY 4 DESC;
-
-SELECT title, author,
-CASE
-WHEN review&lt;3 THEN 'bad'
-WHEN review&lt;4 THEN 'good'
-WHEN review&lt;5 THEN 'great'
-END AS 'Review'
-FROM books 
-ORDER BY 3 DESC; 
+CREATE TABLE books (book_id INTEGER PRIMARY KEY, Title TEXT, Author TEXT, Release_year INTEGER, Genre TEXT, Review INTEGER);
+
+INSERT INTO books VALUES (1, "To Kill a Mockingbird", "Harper Lee", 1960, "Fiction", 4.27);
+INSERT INTO books VALUES (2, "1984", "George Orwell", 1949, "Fiction", 4.19);
+INSERT INTO books VALUES (3, "The Lord of the Rings", "J.R.R. Tolkien", 1955, "Fiction", 4.52);
+INSERT INTO books VALUES (4, "The Catcher in the Rye", "J.D. Salinger", 1951, "Fiction", 3.81);
+INSERT INTO books VALUES (5, "The Great Gatsby", "F. Scott Fitzgerald", 1925, "Fantasy", 3.93);
+INSERT INTO books VALUES (6, "The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950, "Fantasy", 4.23);
+INSERT INTO books VALUES (7, "Lord of the Flies", "William Golding", 1954, "Classics", 3.69);
+INSERT INTO books VALUES (8, "Animal Farm", "George Orwell", 1945, "Classics", 3.98);
+INSERT INTO books VALUES (9, "Catch-22", "Joseph Heller", 1961, "Classics", 3.99);
+INSERT INTO books VALUES (10, "The Grapes of Wrath", "John Steinbeck", 1939, "Classics", 3.99);
+INSERT INTO books VALUES (11, "Gone with the Wind", "Margaret Mitchell", 1936, "Romance", 4.30);
+INSERT INTO books VALUES (12, "Slaughterhouse-Five", "Kurt Vonnegut Jr.", 1969, "Classics", 4.09);
+INSERT INTO books VALUES (13, "One Flew Over the Cuckoo's Nest", "Ken Kesey", 1962, "Fiction", 4.20);
+INSERT INTO books VALUES (14, "A Clockwork Orange", "Anthony Burgess", 1962, "Classics", 4.00);
+INSERT INTO books VALUES (15, "Are You There God? It's Me, Margaret", "Judy Blume", 1970, "Young Adult", 3.91);
+INSERT INTO books VALUES (16, "Things Fall Apart", "Chinua Achebe", 1958, "Fiction", 3.72);
+INSERT INTO books VALUES (17, "Invisible Man", "Ralph Ellison", 1952, "Classics", 3.90);
+INSERT INTO books VALUES (18, "Beloved", "Toni Morrison", 1987, "Fiction", 3.92);
+INSERT INTO books VALUES (19, "All the King's Men", "Robert Penn Warren", 1946, "Fiction", 4.08);
+INSERT INTO books VALUES (20, "Infinite Jest", "David Foster Wallace", 1996, "Fiction", 4.26);
+
+CREATE TABLE students (student_id INTEGER PRIMARY KEY, Name TEXT, Book_id INTEGER, Check_out_date REAL, Check_in_date REAL, Penalty TEXT);
+
+INSERT INTO students VALUES ( 1, "Anna Jones", 18, "17/05/2022", "25/05/2022", "none");
+INSERT INTO students VALUES ( 2, "Carl Jackson", 2, "22/05/2022", "25/05/2022", "none");
+INSERT INTO students VALUES ( 3, "Hannah Moon", 6, "14/05/2022", "25/05/2022", "yes");
+INSERT INTO students VALUES ( 4, "Melitta Ellen", 14, "26/05/2022", "03/06/2022", "none");
+INSERT INTO students VALUES ( 5, "Virgie Angelas", 9, "27/05/2022", "10/06/2022", "yes");
+INSERT INTO students VALUES ( 6, "Wayne Solomon", 3, "28/05/2022", "04/06/2022", "none");
+INSERT INTO students VALUES ( 7, "Walt Ardith", 21, "28/05/2022", "05/06/2022", "none");
+INSERT INTO students VALUES ( 8, "Barney Esme", 5, "29/05/2022", "08/06/2022", "none");
+INSERT INTO students VALUES ( 9, "Anna Jones", 20, "30/05/2022", "07/06/2022", "none");
+INSERT INTO students VALUES ( 10, "Anna Jones", 16, "30/05/2022", "04/06/2022", "none");
+INSERT INTO students VALUES ( 11, "Anna Jones", 1, "30/05/2022", "04/06/2022", "none");
+INSERT INTO students VALUES ( 12, "Gail Garland", 14, "31/05/2022", "25/06/2022", "yes");
+INSERT INTO students VALUES ( 13, "Gretta Jenna", 11, "31/05/2022", "06/06/2022", "none");
+INSERT INTO students VALUES ( 14, "Jake Zeke", 2, "02/06/2022", "/06/2022", "none");
+INSERT INTO students VALUES ( 15, "Wallace Laraine", 5, "02/06/2022", "10/06/2022", "none");
+INSERT INTO students VALUES ( 16, "Anna Jones", 17, "03/06/2022", "09/06/2022", "none");
+INSERT INTO students VALUES ( 17, "Beckah Jenn", 6, "03/06/2022", "10/06/2022", "none");
+INSERT INTO students VALUES ( 18, "Lindsey Janet", 16, "04/06/2022", "12/06/2022", "none");
+INSERT INTO students VALUES ( 19, "Elmer Shayne", 7, "04/06/2022", "09/06/2022", "none");
+INSERT INTO students VALUES ( 20, "Sam Katheryn", 20, "05/06/2022", "09/06/2022", "none");
+INSERT INTO students VALUES ( 21, "Alys Fred", 5, "05/06/2022", "10/06/2022", "none");
+INSERT INTO students VALUES ( 22, "Hiram Roy", 20, "07/06/2022", "21/06/2022", "yes");
+INSERT INTO students VALUES ( 23, "Tiana Spring", 16, "07/06/2022", "14/06/2022", "none");
+INSERT INTO students VALUES ( 24, "Linden Shayla", 15, "09/06/2022", "25/06/2022", "yes");
+INSERT INTO students VALUES ( 25, "Michael Crystal", 9, "09/06/2022", "17/06/2022", "none");
+INSERT INTO students VALUES ( 26, "Chloe Haven", 3, "09/06/2022", "23/06/2022", "yes");
+INSERT INTO students VALUES ( 27, "Wat Coretta", 16, "09/06/2022", "16/06/2022", "none");
+INSERT INTO students VALUES ( 28, "Mandy Jill", 5, "10/06/2022", "11/06/2022", "none");
+INSERT INTO students VALUES ( 29, "Branden Lanes", 8, "10/06/2022", "15/06/2022", "none");
+INSERT INTO students VALUES ( 30, "Anna Jones", 1, "11/06/2022", "20/06/2022", "none");
+INSERT INTO students VALUES ( 31, "Anna Jones", 10, "12/06/2022", "18/06/2022", "none");
+INSERT INTO students VALUES ( 32, "Anna Jones", 1, "12/06/2022", "22/06/2022", "none");
+INSERT INTO students VALUES ( 33, "Reggie Devon", 20, "12/06/2022", "28/06/2022", "yes");
+INSERT INTO students VALUES ( 34, "Cissy Ambrose", 4, "15/06/2022", "25/06/2022", "none");
+INSERT INTO students VALUES ( 35, "Pheobe Maralyn", 18, "15/06/2022", "21/06/2022", "none");
+INSERT INTO students VALUES ( 36, "Pheobe Maralyn", 20, "18/06/2022", "25/06/2022", "none");
+INSERT INTO students VALUES ( 37, "Cleve Marlene", 9, "18/06/2022", "23/06/2022", "none");
+INSERT INTO students VALUES ( 38, "Jaye Micah", 3, "19/06/2022", "27/06/2022", "none");
+INSERT INTO students VALUES ( 39, "Gerald Wynona", 17, "21/06/2022", "28/06/2022", "none");
+INSERT INTO students VALUES ( 40, "Bart Daryl", 4, "24/06/2022", "01/07/2022", "none");
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/library.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1159"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainbooks"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM books
+
+LIMIT 5;
+
+SELECT * FROM students
+
+LIMIT 5;
+
+
+
+SELECT MIN(release_year) AS 'Oldest Book', title
+
+FROM books;
+
+
+
+SELECT MAX(release_year) AS 'Newest Book', title
+
+FROM books; 
+
+
+
+SELECT genre, COUNT(*) AS 'How Many Books'
+
+FROM books
+
+GROUP BY genre
+
+ORDER BY 2 DESC; 
+
+
+
+SELECT genre, title, MAX(review) AS 'Highest review in each genre'
+
+FROM books
+
+GROUP BY genre
+
+ORDER BY 3 DESC;
+
+
+
+SELECT * 
+
+FROM books
+
+WHERE review&gt;4
+
+ORDER BY review DESC;
+
+
+
+SELECT title, author
+
+FROM books
+
+WHERE book_id NOT IN (
+
+SELECT book_id
+
+FROM students);
+
+
+
+SELECT title 
+
+FROM books 
+
+WHERE title LIKE '%the%'
+
+GROUP BY 1;
+
+
+
+SELECT title, author, release_year AS 'Release year'
+
+FROM books
+
+WHERE release_year BETWEEN '1960' AND '1990'
+
+ORDER BY 3; 
+
+
+
+SELECT books.book_id, title, MIN(review) AS 'Worst rated book', name
+
+FROM books
+
+JOIN students
+
+ON students.book_id=books.book_id;
+
+
+
+
+
+SELECT name, penalty AS 'Banned for two months'
+
+FROM students
+
+WHERE penalty='yes'
+
+ORDER BY name;
+
+
+
+SELECT books.book_id, books.title, books.author, COUNT(students.book_id) AS 'Frequency'
+
+FROM books
+
+JOIN students
+
+ON books.book_id=students.book_id
+
+GROUP BY 2
+
+ORDER BY 4 DESC;
+
+
+
+SELECT title, author,
+
+CASE
+
+WHEN review&lt;3 THEN 'bad'
+
+WHEN review&lt;4 THEN 'good'
+
+WHEN review&lt;5 THEN 'great'
+
+END AS 'Review'
+
+FROM books 
+
+ORDER BY 3 DESC; 
+
 </sql><current_tab id="0"/></tab_sql></sqlb_project>

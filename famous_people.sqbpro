@@ -1,19 +1,93 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/famous_people.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="803"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,13:mainfamous_people"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT famous_people.name, movies.title, movies.character_name
-FROM famous_people
-JOIN movies
-on famous_people.name=movies.actor_name;
-
-SELECT title, character_name
-FROM movies
-WHERE actor_name=&quot;Blake Lively&quot;;
-
-SELECT name 
-FROM famous_people
-WHERE career=&quot;singer&quot;; 
-
-SELECT a.name, b.name AS 'married to'
-FROM status
-JOIN famous_people a
-ON status.id=a.id
-JOIN famous_people b
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY, name TEXT, career TEXT);
+
+INSERT INTO famous_people ( name, career)
+VALUES 
+("Beyonce", "singer"),
+("Blake Lively", "actress"),
+("Ellen DeGeneres", "TV show host"),
+("Lady Gaga", "singer"),
+("Jay-Z", "singer"),
+("Ryan Reynolds", "actor"),
+("Portia de Rossi", "former actress"),
+("Steve Harvey", "TV show host"),
+("Oprah Winfrey", "TV show host"),
+("Barack Obama", "former president"),
+("Michelle Obama", "former first lady"),
+("Jennifer Aniston", "actress"),
+("Brad Pitt", "actor"),
+("Alessandra Ambrosio", "model"),
+("Adam Levine", "singer"),
+("Behati Prinsloo", "model"),
+("Angelina Jolie", "actress");
+
+CREATE TABLE movies ( id INTEGER PRIMARY KEY, title TEXT, character_name TEXT, actor_name TEXT); 
+
+INSERT INTO movies (title, character_name, actor_name)
+VALUES 
+("The age of Adeline", "Adaline", "Blake Lively"),
+("A star is born", "Ally Campana", "Lady Gaga"),
+("Deep Water", "Nick", "Finn Wittrock"), 
+("Deadpool 1", "Deadpool", "Ryan Reynolds"),
+("Deadpool 2", "Deadpool", "Ryan Reynolds"),
+("The in between", "Tessa", "Joey King"),
+("A simple favor", "Emily Nelson", "Blake Lively");
+
+CREATE TABLE status (id INTEGER PRIMARY KEY, status TEXT, partner_id INTEGER);
+
+INSERT INTO status (status, partner_id)
+VALUES
+("married", 5),
+("married", 6),
+("married", 7),
+("single", NULL),
+("married", 1),
+("married", 2),
+("married", 3),
+("married", NULL),
+("single", NULL),
+("married", 11),
+("married", 10),
+("single", NULL),
+("divorced", 17),
+("single", NULL),
+("married", 16),
+("married", 15),
+("married", 13);
+
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/famous_people.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="803"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,13:mainfamous_people"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT famous_people.name, movies.title, movies.character_name
+
+FROM famous_people
+
+JOIN movies
+
+on famous_people.name=movies.actor_name;
+
+
+
+SELECT title, character_name
+
+FROM movies
+
+WHERE actor_name='Blake Lively';
+
+
+
+SELECT name 
+
+FROM famous_people
+
+WHERE career='singer'; 
+
+
+
+SELECT a.name, b.name AS 'married to'
+
+FROM status
+
+JOIN famous_people a
+
+ON status.id=a.id
+
+JOIN famous_people b
+
 ON status.partner_id=b.id;</sql><current_tab id="0"/></tab_sql></sqlb_project>

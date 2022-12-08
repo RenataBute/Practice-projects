@@ -67,7 +67,9 @@ INSERT INTO students VALUES ( 40, "Bart Daryl", 4, "24/06/2022", "01/07/2022", "
 
 
 
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/library.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1159"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainbooks"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM books
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Renata/Downloads/sqlite-tools-win32-x86-3400000/sqlite-tools-win32-x86-3400000/library.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1159"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainbooks"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">
+
+SELECT * FROM books
 
 LIMIT 5;
 
